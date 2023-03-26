@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './details.component';","map":{"version":3,"mappings":"AAAA,cAAc,qBAAqB","names":[],"sourceRoot":"","sources":["/home/eagold/MyFiles/FASystem/FASystemClient/src/app/pages/incomes/details/index.ts"],"sourcesContent":["export * from './details.component';\r\n"]},"metadata":{},"sourceType":"module","externalDependencies":[]}

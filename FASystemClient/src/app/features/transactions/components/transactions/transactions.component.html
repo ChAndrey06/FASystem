@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="header">
+    <div class="table-controls">
+      <button mat-fab color="primary" (click)="onNewClicked()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <h1>{{title}}</h1>
+  </div>
+
+  <ag-grid-angular 
+    class="ag-theme-alpine grid" 
+    [rowData]="transactions.data" 
+    [columnDefs]="columnDefs" 
+    (rowClicked)="onRowClicked($event.data)"
+    [defaultColDef]="defaultColDef" 
+    [gridOptions]="gridOptions"
+    (gridReady)="onGridReady($event)"
+    (firstDataRendered)="onFirstDataRendered()" 
+    (selectionChanged)="onSelectionChanged($event)" 
+    rowSelection="multiple">
+  </ag-grid-angular>
+</div>
+
+<ng-template #controlsTemplate let-rowData>
+  <div class="row-controls" (click)="$event.stopPropagation()">
+    <button mat-icon-button color="primary" (click)="onRowEditClicked(rowData)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</ng-template>

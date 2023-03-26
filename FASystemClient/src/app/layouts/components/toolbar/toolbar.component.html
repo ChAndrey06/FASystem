@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span [routerLink]="['']">FASystem</span>
+  <span class="spaicer"></span>
+  <div *ngIf="user && accounts" class="content">
+    <app-accounts [accounts]="accounts"></app-accounts>
+    <div>
+      {{user.name}} - {{user.login}}
+    </div>
+  </div>
+  <ng-container *ngIf="isLoggedIn">
+    <button (click)="onLogoutClicked()" mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="!isLoggedIn">
+    <span>Login</span>
+    <button (click)="onLoginClicked()" mat-icon-button>
+      <mat-icon>login</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>

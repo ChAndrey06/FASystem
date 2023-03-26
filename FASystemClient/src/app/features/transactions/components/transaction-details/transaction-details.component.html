@@ -1,0 +1,104 @@
+<ng-container *ngIf="!transaction.isLoading">
+  <h1>{{title}} {{transaction.data ? transaction.data.id : 'create'}}</h1>
+  
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <mat-form-field class="element" *ngIf="!typeId">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="typeId">
+        <mat-option *ngFor="let type of transactionTypes" [value]="type.id">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="element">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" placeholder="Amount" formControlName="amount">
+    </mat-form-field>
+  
+    <mat-form-field class="element">
+      <mat-label>Account</mat-label>
+      <mat-select formControlName="accountId">
+        <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+          {{account.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="element">
+      <mat-label>Category</mat-label>
+      <input 
+        matInput 
+        placeholder="Category" 
+        formControlName="categoryName"
+        (change)="onCategoryNameChanged()"
+        [matAutocomplete]="autocomplete"
+      >
+  
+      <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="onClearCategoryClicked()">
+        <mat-icon>close</mat-icon>
+      </button>
+  
+      <mat-autocomplete 
+        #autocomplete="matAutocomplete" 
+        (optionSelected)="onCategorySelected($event)"
+      >
+        <mat-option *ngIf="categories.isLoading">Loading...</mat-option>
+        <ng-container *ngIf="!categories.isLoading">
+          <mat-option *ngFor="let category of categories.data" [value]="category">
+            {{category.name}}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Number</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> -->
+
+    <mat-form-field class="element">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description..." formControlName="description"></textarea>
+    </mat-form-field>
+  
+    <div class="sbumit">
+      <button 
+        mat-raised-button
+        color="primary" 
+        type="button" 
+        (click)="onNewClicked()"
+        [disabled]="formGroup.dirty"
+      >
+        New
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        [disabled]="!formGroup.valid || !formGroup.dirty"
+      >
+        Save
+      </button>    
+      <button 
+        mat-raised-button
+        color="primary" 
+        type="button"
+        (click)="onViewAllClicked()"
+        [disabled]="formGroup.dirty"
+      >
+        View all
+      </button>    
+    </div>
+  </form>
+</ng-container>

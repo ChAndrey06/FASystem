@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './template-renderer';","map":{"version":3,"mappings":"AAAA,cAAc,qBAAqB","names":[],"sourceRoot":"","sources":["/home/eagold/MyFiles/FASystem/FASystemClient/src/app/shared/index.ts"],"sourcesContent":["export * from './template-renderer';"]},"metadata":{},"sourceType":"module","externalDependencies":[]}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './main-layout';","map":{"version":3,"mappings":"AAAA,cAAc,eAAe","names":[],"sourceRoot":"","sources":["/home/eagold/MyFiles/FASystem/FASystemClient/src/app/layouts/index.ts"],"sourcesContent":["export * from './main-layout';"]},"metadata":{},"sourceType":"module","externalDependencies":[]}
